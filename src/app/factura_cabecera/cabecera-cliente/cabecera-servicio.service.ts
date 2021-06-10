@@ -16,6 +16,8 @@ export class CabeceraServicioService {
 
   postCabecera(cabecera: any) {
 
+    const URL = `https://utn-compras-api.herokuapp.com`;
+
     const body = JSON.stringify(cabecera);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -41,5 +43,12 @@ export class CabeceraServicioService {
   deleteCabecera(idCabecera: any) {
     const url = `${URL}/cabeceras/${idCabecera}`;
     return this._http.delete(url);
+  }
+
+
+  getProveedores() {
+    const url = `https://utn-compras-api.herokuapp.com/proveedor`;
+
+    return this._http.get(url);
   }
 }
