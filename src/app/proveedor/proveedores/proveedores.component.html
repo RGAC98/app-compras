@@ -1,0 +1,50 @@
+<div>
+    <input type="text" placeholder="DNI" [(ngModel)] = "dni" [ngModelOptions]="{standalone: true}" required/>
+    <br>
+    <input type="text" placeholder="Nombres" [(ngModel)] = "nombre" [ngModelOptions]="{standalone: true}" required/>
+    <br>
+    <input type="text" placeholder="Ciudad" [(ngModel)] = "ciudad" [ngModelOptions]="{standalone: true}" required/>
+    <br>
+    <input type="text" placeholder="Tipo" [(ngModel)] = "tipo" [ngModelOptions]="{standalone: true}" required/>
+    <br>
+    <input type="text" placeholder="Direccion" [(ngModel)] = "direccion" [ngModelOptions]="{standalone: true}" required/>
+    <br>
+    <input type="text" placeholder="Telefono" [(ngModel)] = "telefono" [ngModelOptions]="{standalone: true}" required/>
+    <br>
+    <input type="text" placeholder="Email" [(ngModel)] = "email" [ngModelOptions]="{standalone: true}" required/>
+    <br>
+    <input type="text" placeholder="Estado" [(ngModel)] = "estado" [ngModelOptions]="{standalone: true}" required/>
+</div>
+
+<div>
+    <button type="submit" (click)="CrearProveedor()" >Ingresar proveedor</button>
+</div>
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>DNI</th>
+                <th>Nombres</th>
+                <th>Ciudad</th>
+                <th>Tipo</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+                <th>Email</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor = "let proveedor of listaProveedores">
+                <td>{{proveedor.prv_dni}}</td>
+                <td>{{proveedor.prv_nombre}}</td>
+                <td>{{proveedor.prv_ciudad}}</td>
+                <td>{{proveedor.prv_tipo}}</td>
+                <td>{{proveedor.prv_direccion}}</td>
+                <td>{{proveedor.prv_telefono}}</td>
+                <td>{{proveedor.prv_email}}</td>
+                <td>{{proveedor.prv_estado}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
