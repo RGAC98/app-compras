@@ -10,13 +10,11 @@ import { MaterialModule } from './shared/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 
 import { CabeceraClienteComponent } from './factura_cabecera/cabecera-cliente/cabecera-cliente.component';
-import { ProveedoresComponent } from './proveedor/proveedores/proveedores.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CabeceraClienteComponent,
-    ProveedoresComponent
   ],
   imports: [
     HttpClientModule,
