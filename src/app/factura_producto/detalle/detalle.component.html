@@ -1,0 +1,20 @@
+<div>
+    <mat-card>
+        <div align="center">
+            <img class="logo-utn" src="../../../assets/logo-UTN-2017.png">
+        </div>
+        <br>
+        <mat-card-title>Datos del Proveedor</mat-card-title>
+        <br>
+        <mat-card-content>
+            <p align="center">{{cabecera.prv_dni}} &nbsp; {{cabecera.prv_nombre}} &nbsp; {{cabecera.prv_telefono}}</p>
+            <p align="center">{{cabecera.prv_ciudad}} &nbsp; {{cabecera.prv_direccion}} &nbsp; {{cabecera.prv_email}}</p>
+        </mat-card-content>
+        <br>
+        <mat-card-title>Datos de la factura</mat-card-title>
+        <br>
+        <mat-card-content>
+            <p align="center">{{"UTN-FAC-"+cabecera.fcab_id}} &nbsp; {{cabecera.fcab_fecha_init}} &nbsp; {{cabecera.fcab_fecha_fin}} &nbsp; {{cabecera.fcab_tipo_pago}}</p>
+        </mat-card-content>
+    </mat-card>
+</div>

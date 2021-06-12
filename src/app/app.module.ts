@@ -11,12 +11,16 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { CabeceraClienteComponent } from './factura_cabecera/cabecera-cliente/cabecera-cliente.component';
 import { ReportesComponent } from './factura_detalle/reportes/reportes.component';
+import { DetalleComponent } from './factura_producto/detalle/detalle.component';
+import { InventarioComponent } from './factura_producto/inventario/inventario.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CabeceraClienteComponent,
     ReportesComponent,
+    DetalleComponent,
+    InventarioComponent,
   ],
   imports: [
     HttpClientModule,

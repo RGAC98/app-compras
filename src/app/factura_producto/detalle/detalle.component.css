@@ -1,0 +1,9 @@
+mat-card-title{
+    display: flex;
+    justify-content: center;
+}
+
+.logo-utn{
+    width: 100px;
+    height: 100px;
+}
