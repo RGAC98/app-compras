@@ -13,15 +13,20 @@ export class DetalleComponent implements OnInit
 {
   fcab_id: any
   cabecera: any
+  productos: Array<any> = []
+
+  //datos de la tabla
+  columnas: string[] = ['Codigo', 'Cantidad', 'PVP', 'IVA', 'ACCIONES']
 
   constructor(private parametro: ActivatedRoute, private compras_api: ApiComprasService) 
   {
     this.fcab_id = this.parametro.snapshot.paramMap.get('fcab_id')
+    this.ObtenerCabecera()
   }
 
   ngOnInit(): void 
   {
-    this.ObtenerCabecera()
+    this.ObtenerProductos()
   }
 
   ObtenerCabecera()
@@ -29,6 +34,14 @@ export class DetalleComponent implements OnInit
     this.compras_api.getFacturaCabeceraByID(this.fcab_id).subscribe((respuesta: any) => {
       this.cabecera = respuesta.fac_cabecera
       console.log(this.cabecera);
+    })
+  }
+
+  ObtenerProductos()
+  {
+    this.compras_api.getProductosDeUnaCabecera(this.fcab_id).subscribe((respuesta: any) => {
+      this.productos = respuesta.productos
+      console.log(this.productos);
     })
   }
 }
