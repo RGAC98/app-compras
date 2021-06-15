@@ -15,7 +15,6 @@ import { DetalleComponent } from './factura_producto/detalle/detalle.component';
 import { InventarioComponent } from './factura_producto/inventario/inventario.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

@@ -41,6 +41,7 @@ export class CabeceraServicioService {
   }
 
   deleteCabecera(idCabecera: any) {
+    const URL = `https://utn-compras-api.herokuapp.com`;
     const url = `${URL}/cabeceras/${idCabecera}`;
     return this._http.delete(url);
   }
