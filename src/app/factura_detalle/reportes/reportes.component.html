@@ -1,38 +1,57 @@
-<div>
-    <input type="text" placeholder="DNI" [(ngModel)]="dni" [ngModelOptions]="{standalone: true}" required>
+<div class="check_box">
+    <mat-radio-group [(ngModel)]="parametro" [ngModelOptions]="{standalone: true}">
+        <label class="check_item">Tipo de Reporte </label>
+        <mat-radio-button class="example-margin" value="Proveedor">Por Proveedor</mat-radio-button>
+        <mat-radio-button class="example-margin" value="nroFactura">Por Nro Factura</mat-radio-button>
+        <mat-radio-button class="example-margin" value="Producto">Por Producto</mat-radio-button>
+    </mat-radio-group>
 </div>
-<div>
-    <button type="submit" (click)="ObtenerFacturasDetallePorProveedorDNI()">Obtener</button>
+
+<div class="buscador_container">
+<form class="example-form"> 
+    <mat-form-field class="example-full-width">
+        <mat-label>Buscador</mat-label>
+        <input matInput type="text" placeholder="Parámetro" [(ngModel)]="buscador" [ngModelOptions]="{standalone: true}" required>
+    </mat-form-field>
+</form>
+
+<!-- <div class="aux"> -->
+    <button class="search" mat-icon-button color="primary" type="submit" (click)="Filtro()"><mat-icon>search</mat-icon></button>    
+<!-- </div> -->
 </div>
-<div>
+
+<div class="tabla table-responsive mat-elevation-z8">
     <table>
         <thead>
             <tr>
                 <th>Codigo Factura</th>
-                <th>DNI proveedor</th>
-                <th>Nombre proveedor</th>
-                <th>Tipo pago</th>
+                <th>DNI Proveedor</th>
+                <th>Nombre Proveedor</th>
+                <th>Tipo Pago</th>
                 <th>Producto</th>
-                <th>cantidad</th>
-                <th>precio de venta</th>
-                <th>iva</th>
+                <th>Cantidad</th>
+                <th>Precio de Venta</th>
+                <th>IVA</th>
                 <th>Fecha inicio</th>
                 <th>Fecha Fin</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor = "let factura of reporte">
-                <td>{{factura.fcab_id}}</td>
-                <td>{{factura.prv_dni}}</td>
-                <td>{{factura.prv_nombre}}</td>
-                <td>{{factura.fcab_tipo_pago}}</td>
-                <td>{{factura.fpro_producto}}</td>
-                <td>{{factura.fpro_cantidad}}</td>
-                <td>{{factura.fpro_pvp}}</td>
-                <td>{{factura.fpro_iva}}</td>
-                <td>{{factura.fcab_fecha_init}}</td>
-                <td>{{factura.fcab_fecha_fin}}</td>
+                <td class="item">{{factura.fcab_id}}</td>
+                <td class="item">{{factura.prv_dni}}</td>
+                <td class="item">{{factura.prv_nombre}}</td>
+                <td class="item" *ngIf="factura.fcab_tipo_pago == true ; else noCredito">Crédito</td>
+                <ng-template #noCredito>Contado</ng-template>
+                <td class="item">{{factura.fpro_producto}}</td>
+                <td class="item">{{factura.fpro_cantidad}}</td>
+                <td class="item">{{factura.fpro_pvp}}</td>
+                <td class="item">{{factura.fpro_iva}}</td>
+                <td class="item">{{factura.fcab_fecha_init}}</td>
+                <td class="item">{{factura.fcab_fecha_fin}}</td>
             </tr>
         </tbody>
     </table>
+
+    
 </div>

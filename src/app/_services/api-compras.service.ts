@@ -16,4 +16,12 @@ export class ApiComprasService
   {
     return this.compras.get(this.ruta+"/factura_detalle/proveedor/"+dni)
   }
+  getFacturaDetallePorNroFactura(nroFactura)
+  {
+    return this.compras.get(this.ruta+"/factura_detalle/nroFactura/"+nroFactura)
+  }
+  getFacturaDetallePorCodigoProducto(codigoProducto)
+  {
+    return this.compras.get(this.ruta+"/factura_detalle/producto/"+codigoProducto)
+  }
 }
