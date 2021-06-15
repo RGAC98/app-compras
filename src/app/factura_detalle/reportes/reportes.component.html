@@ -1,0 +1,38 @@
+<div>
+    <input type="text" placeholder="DNI" [(ngModel)]="dni" [ngModelOptions]="{standalone: true}" required>
+</div>
+<div>
+    <button type="submit" (click)="ObtenerFacturasDetallePorProveedorDNI()">Obtener</button>
+</div>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Codigo Factura</th>
+                <th>DNI proveedor</th>
+                <th>Nombre proveedor</th>
+                <th>Tipo pago</th>
+                <th>Producto</th>
+                <th>cantidad</th>
+                <th>precio de venta</th>
+                <th>iva</th>
+                <th>Fecha inicio</th>
+                <th>Fecha Fin</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor = "let factura of reporte">
+                <td>{{factura.fcab_id}}</td>
+                <td>{{factura.prv_dni}}</td>
+                <td>{{factura.prv_nombre}}</td>
+                <td>{{factura.fcab_tipo_pago}}</td>
+                <td>{{factura.fpro_producto}}</td>
+                <td>{{factura.fpro_cantidad}}</td>
+                <td>{{factura.fpro_pvp}}</td>
+                <td>{{factura.fpro_iva}}</td>
+                <td>{{factura.fcab_fecha_init}}</td>
+                <td>{{factura.fcab_fecha_fin}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
