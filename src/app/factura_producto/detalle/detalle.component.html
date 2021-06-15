@@ -1,62 +1,121 @@
 <br>
-<div align="center">
-    <img class="logo-utn" src="../../../assets/logo-UTN-2017.png">
-</div>
 <div>
-    <mat-card>
-        <br>
-        <mat-card-title>Datos del Proveedor</mat-card-title>
-        <br>
-        <mat-card-content>
-            <p align="center">{{cabecera.prv_dni}} &nbsp; {{cabecera.prv_nombre}} &nbsp; {{cabecera.prv_telefono}}</p>
-            <p align="center">{{cabecera.prv_ciudad}} &nbsp; {{cabecera.prv_direccion}} &nbsp; {{cabecera.prv_email}}</p>
-        </mat-card-content>
-        <br>
-        <mat-card-title>Datos de la factura</mat-card-title>
-        <br>
-        <mat-card-content>
-            <p align="center">{{"UTN-FAC-"+cabecera.fcab_id}} &nbsp; {{cabecera.fcab_fecha_init}} &nbsp; {{cabecera.fcab_fecha_fin}} &nbsp; {{cabecera.fcab_tipo_pago}}</p>
-        </mat-card-content>
-    </mat-card>
-</div>
-<div>
-    <mat-card>
-        <mat-card-title>Detalle de la factura</mat-card-title>
-    </mat-card>
-</div>
-<div>
-    <table mat-table [dataSource]="productos" class="mat-elevation-z8">
+    <div class="prov">
+        <mat-card class="prov-data">
+            <br>
+            <mat-card-title>Datos del Proveedor</mat-card-title>
+            <br>
+            <mat-card-content>
+                <p align="center">
+                    <label style="font-weight: bold;">DNI: </label> <output>{{cabecera.prv_dni}} &nbsp;</output>
+                    <label style="font-weight: bold;">Nombre: </label> <output>{{cabecera.prv_nombre}} &nbsp;</output>
+                    <label style="font-weight: bold;">Teléfono: </label> <output>{{cabecera.prv_telefono}}</output>
+                </p>
+                <p align="center">
+                    <label style="font-weight: bold;">Dirección: </label> <output>{{cabecera.prv_ciudad}}
+                        {{cabecera.prv_direccion}} &nbsp;</output>
+                    <label style="font-weight: bold;">Email: </label> <output>{{cabecera.prv_email}}</output>
+                </p>
+            </mat-card-content>
+            <br>
+        </mat-card>
+        <mat-card class="prov-data">
+            <mat-card-title>Datos de la factura</mat-card-title>
+            <br>
+            <mat-card-content>
+                <p align="center" style="font-weight: bold;">{{"UTN-FAC-"+cabecera.fcab_id}}</p>
+                <p align="center">
+                    <label style="font-weight: bold;">Fecha de inicio: </label> <output>{{fecha_inicio}} &nbsp;</output>
+                    <label style="font-weight: bold;">Fecha de fin: </label> <output>{{fecha_fin}}</output>
+                </p>
+                <p align="center">
+                    <label style="font-weight: bold;">Tipo de pago: </label>
+                    <output *ngIf="cabecera.fcab_tipo_pago == true">Crédito</output>
+                    <output *ngIf="cabecera.fcab_tipo_pago == false">Contado</output>
+                </p>
+            </mat-card-content>
+        </mat-card>
+    </div>
 
-        <ng-container matColumnDef="Codigo">
-            <th mat-header-cell *matHeaderCellDef>Codigo</th>
-            <td mat-cell *matCellDef="let producto">{{producto.fpro_producto}}</td>
-        </ng-container>
+    <div>
+        <mat-card>
+            <mat-card-title>Detalle de la factura</mat-card-title>
+        </mat-card>
+    </div>
 
-        <ng-container matColumnDef="Cantidad">
-            <th mat-header-cell *matHeaderCellDef>Cantidad</th>
-            <td mat-cell *matCellDef="let producto">{{producto.fpro_cantidad}}</td>
-        </ng-container>
+    <div align="right">
+        <button mat-icon-button color="primary" (click)="abrirDialog()">
+            <mat-icon>add_shopping_cart</mat-icon>
+        </button>
+    </div>
 
-        <ng-container matColumnDef="PVP">
-            <th mat-header-cell *matHeaderCellDef>PVP</th>
-            <td mat-cell *matCellDef="let producto">{{producto.fpro_pvp}}</td>
-        </ng-container>
+    <!-- <div>
+        <table mat-table [dataSource]="productos" class="mat-elevation-z8">
 
-        <ng-container matColumnDef="IVA">
-            <th mat-header-cell *matHeaderCellDef>IVA</th>
-            <td mat-cell *matCellDef="let producto">{{producto.fpro_iva}}</td>
-        </ng-container>
+            <ng-container matColumnDef="CODIGO">
+                <th mat-header-cell *matHeaderCellDef>Codigo</th>
+                <td mat-cell *matCellDef="let producto">{{producto.fpro_producto}}</td>
+            </ng-container>
 
-        <ng-container matColumnDef="ACCIONES">
-            <th mat-header-cell *matHeaderCellDef>ACCIONES</th>
-            <td mat-cell *matCellDef="let producto">
-                <button mat-button>Actualizar</button>
-                <button mat-button color="primary">Eliminar</button>
-            </td>
-        </ng-container>
+            <ng-container matColumnDef="CANTIDAD">
+                <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+                <td mat-cell *matCellDef="let producto">{{producto.fpro_cantidad}}</td>
+            </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
-        <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+            <ng-container matColumnDef="PVP">
+                <th mat-header-cell *matHeaderCellDef>PVP</th>
+                <td mat-cell *matCellDef="let producto">{{producto.fpro_pvp}}</td>
+            </ng-container>
 
-    </table>
-</div>
+            <ng-container matColumnDef="IVA">
+                <th mat-header-cell *matHeaderCellDef>IVA</th>
+                <td mat-cell *matCellDef="let producto">{{producto.fpro_iva}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="ACCIONES">
+                <th mat-header-cell *matHeaderCellDef>ACCIONES</th>
+                <td mat-cell *matCellDef="let producto">
+                    <button mat-icon-button color="primary">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warm">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+
+        </table>
+    </div> -->
+
+    <div class="tabla table-responsive mat-elevation-z8">
+        <table>
+            <thead>
+                <tr>
+                    <th class="item">Codigo</th>
+                    <th class="item">Cantidad</th>
+                    <th class="item">PVP</th>
+                    <th class="item">IVA</th>
+                    <th class="item">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let producto of productos">
+                    <td class="item">{{producto.fpro_producto}}</td>
+                    <td class="item">{{producto.fpro_cantidad}}</td>
+                    <td class="item">{{producto.fpro_pvp}}</td>
+                    <td class="item">{{producto.fpro_iva}}</td>
+                    <td>
+                        <button mat-icon-button color="primary">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warm">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>

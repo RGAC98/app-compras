@@ -16,3 +16,39 @@ table{
     float: left;
     width: 150px;
 }
+
+.prov {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+ 
+
+.prov-data {
+    grid-column: span 1;
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+    }
+    .example-container > * {
+    width: 100%;
+    }
+    
+    .container {
+    width: 20%;
+    margin-left: 40%;
+    }
+    
+    .separador {
+    width: 20%;
+    }
+    
+    table {
+    width: 100%;
+    padding: 2%;
+    }
+    
+    .item {
+    text-align: left;
+    }

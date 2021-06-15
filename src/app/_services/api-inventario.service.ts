@@ -16,4 +16,9 @@ export class ApiInventarioService
   {
     return this.inventario.get(this.ruta+'/listar/producto')
   }
+
+  getObtenerProducto(codigo)
+  {
+    return this.inventario.get(this.ruta+`/api/compras/p/${codigo}`)
+  }
 }
