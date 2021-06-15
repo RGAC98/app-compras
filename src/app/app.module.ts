@@ -14,7 +14,7 @@ import { ReportesComponent } from './factura_detalle/reportes/reportes.component
 import { DetalleComponent } from './factura_producto/detalle/detalle.component';
 import { InventarioComponent } from './factura_producto/inventario/inventario.component';
 
-import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
