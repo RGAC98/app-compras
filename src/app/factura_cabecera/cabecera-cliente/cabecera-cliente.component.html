@@ -2,10 +2,10 @@
 <br />
 
 <div class="container">
-  <h3 style="margin-left: 25%;">Ingresar cabecera</h3>
+  <h3 style="margin-left: 25%">Ingresar cabecera</h3>
   <form>
     <div class="example-container">
-    <mat-form-field>
+      <mat-form-field>
         <mat-label>Proveedor</mat-label>
         <mat-select
           required
@@ -21,74 +21,106 @@
         </mat-select>
       </mat-form-field>
 
-    <mat-form-field>
-      <input [(ngModel)]="fecha_inicio" name="fecha_inicio" required matInput [matDatepicker]="picker" placeholder="Fecha factura" />
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+      <mat-form-field>
+        <input
+          [(ngModel)]="fecha_inicio"
+          name="fecha_inicio"
+          required
+          matInput
+          [matDatepicker]="picker"
+          placeholder="Fecha factura"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
 
-    <mat-form-field>
-      <input
-      [(ngModel)]="fecha_fin"
-      name="fecha_fin"
-      required matInput [matDatepicker]="pickerr"
-        placeholder="Fecha fin factura"
-      />
-      <mat-datepicker-toggle matSuffix [for]="pickerr"></mat-datepicker-toggle>
-      <mat-datepicker #pickerr></mat-datepicker>
-    </mat-form-field>
-    
-    <mat-form-field>
-      <mat-select required placeholder="Tipo pago" [(ngModel)]="tipoPagoSeleccionado"
-      name="tipoPago">
-      <mat-option
-      *ngFor="let tipoPago of tipoPagoView"
-      [value]="tipoPago.value"
-    >
-      {{ tipoPago.viewValue }}
-    </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button mat-raised-button color="accent" (click)="insertarCabecera()">Insertar</button>
-  </div>
+      <mat-form-field>
+        <input
+          [(ngModel)]="fecha_fin"
+          name="fecha_fin"
+          required
+          matInput
+          [matDatepicker]="pickerr"
+          placeholder="Fecha fin factura"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="pickerr"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #pickerr></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select
+          required
+          placeholder="Tipo pago"
+          [(ngModel)]="tipoPagoSeleccionado"
+          name="tipoPago"
+        >
+          <mat-option
+            *ngFor="let tipoPago of tipoPagoView"
+            [value]="tipoPago.value"
+          >
+            {{ tipoPago.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button color="accent" (click)="insertarCabecera()">
+        Insertar
+      </button>
+    </div>
   </form>
 </div>
-<br>
+<br />
 
 <hr class="separador" />
 <br />
 <h2>Lista cabeceras</h2>
 
 <div class="tabla table-responsive mat-elevation-z8">
+  <table>
+    <thead>
+      <tr>
+        <th class="item">Id cabecera</th>
+        <th class="item">Proveedor</th>
+        <th class="item">Fecha factura</th>
+        <th class="item">Fecha fin factura</th>
+        <th class="item">Tipo pago</th>
+        <th class="item">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cabecera of cabecerasList2">
+        <td class="item">{{ cabecera.fcab_id }}</td>
+        <td class="item">{{ cabecera.fcab_name }}</td>
+        <td class="item">{{ cabecera.fcab_fecha_init }}</td>
+        <td class="item">{{ cabecera.fcab_fecha_fin }}</td>
+        <td
+          class="item"
+          *ngIf="cabecera.fcab_tipo_pago == true; else noCredito"
+        >
+          Crédito
+        </td>
+        <ng-template #noCredito>Contado</ng-template>
+        <td>
+          <button mat-icon-button color="primary">
+            <mat-icon>edit</mat-icon>
+          </button>
 
-    <table>
-        <thead>
-            <tr>
-                <th class="item">Id cabecera</th>
-                <th class="item">Proveedor</th>
-                <th class="item">Fecha factura</th>
-                <th class="item">Fecha fin factura</th>
-                <th class="item">Tipo pago</th>
-                <th class="item">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let cabecera of cabecerasList2">
-                <td class="item">{{cabecera.fcab_id}}</td>
-                <td class="item">{{cabecera.fcab_name}}</td>
-                <td class="item">{{cabecera.fcab_fecha_init}}</td>
-                <td class="item">{{cabecera.fcab_fecha_fin}}</td>
-                <td class="item" *ngIf="cabecera.fcab_tipo_pago == true; else noCredito">Crédito</td>
-                <ng-template #noCredito>Contado</ng-template>
-                <td>
-                    <mat-icon>edit</mat-icon>
-                    <mat-icon>delete</mat-icon>
-                </td>
+          <button mat-icon-button color="warm">
+            <mat-icon>delete</mat-icon>
+          </button>
 
-            </tr>
-        </tbody>
-    </table>
-<!-- 
+          <button mat-icon-button color="warm">
+            <span [routerLink]="['/cabeceras', ]">
+              <mat-icon>description</mat-icon>
+            </span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- 
   <mat-table class="lessons-table mat-elevation-z8" [dataSource]="fuente">
     <ng-container matColumnDef="cabecera_id">
       <mat-header-cell *matHeaderCellDef>Id Cabecera</mat-header-cell>

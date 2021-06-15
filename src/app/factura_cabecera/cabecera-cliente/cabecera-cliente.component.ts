@@ -51,8 +51,8 @@ export class CabeceraClienteComponent implements OnInit {
                 let cab: Cabecera = {
                   fcab_id: this.cabecerasList[index].fcab_id,
                   fcab_name: this.proveedorView[jindex].prv_nombre,
-                  fcab_fecha_init: this.cabecerasList[index].fcab_fecha_init,
-                  fcab_fecha_fin: this.cabecerasList[index].fcab_fecha_fin,
+                  fcab_fecha_init: this.obtenerFecha(this.cabecerasList[index].fcab_fecha_init),
+                  fcab_fecha_fin: this.obtenerFecha(this.cabecerasList[index].fcab_fecha_fin),
                   fcab_tipo_pago: this.cabecerasList[index].fcab_tipo_pago
                 }       
                 console.log(cab);
@@ -83,6 +83,13 @@ export class CabeceraClienteComponent implements OnInit {
     );
   }
 
+  obtenerFecha(fcab_fecha)
+  {
+    var fecha_iso = fcab_fecha+""
+    var fecha = fecha_iso.substring(0,10)
+    return fecha
+  }
+
   insertarCabecera(){
     let cabecera: any = {
       fcab_prv_id: this.proveedorSeleccionado,
@@ -107,16 +114,16 @@ export class CabeceraClienteComponent implements OnInit {
 export interface Cabecera {
   fcab_id: number;
   fcab_name: string;
-  fcab_fecha_init: Date;
-  fcab_fecha_fin: Date;
+  fcab_fecha_init: any;
+  fcab_fecha_fin: any;
   fcab_tipo_pago: boolean;
 }
 
 export interface CabeceraId {
   fcab_id: number;
   fcab_prv_id: number;
-  fcab_fecha_init: Date;
-  fcab_fecha_fin: Date;
+  fcab_fecha_init: string;
+  fcab_fecha_fin: string;
   fcab_tipo_pago: boolean;
 }
 
