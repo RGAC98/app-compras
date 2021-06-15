@@ -13,18 +13,25 @@ import { HttpClientModule } from '@angular/common/http';
 import { CabeceraClienteComponent } from './factura_cabecera/cabecera-cliente/cabecera-cliente.component';
 import { ProveedoresComponent } from './proveedor/components/proveedores/proveedores.component';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditProveedorComponent } from './proveedor/components/edit-proveedor/edit-proveedor.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     CabeceraClienteComponent,
-    ProveedoresComponent
+    ProveedoresComponent,
+    EditProveedorComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

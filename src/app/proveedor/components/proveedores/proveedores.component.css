@@ -1,5 +1,5 @@
 table {
-    width: 100%;
+    width: 95%;
   }
 
   .demo-table {
@@ -7,9 +7,19 @@ table {
   }
   
   .demo-button-container {
-    padding-bottom: 16px;
+    padding-bottom: 10px;
   }
   
   .demo-button + .demo-button {
-    margin-left: 8px;
+    margin-left: 5px;
+  }
+
+  .example-form {
+    min-width: 150px;
+    max-width: 400px;
+    width: 50%;
+  }
+  
+  .example-full-width {
+    width: 50%;
   }

@@ -30,6 +30,6 @@ export class ProveedoresService {
 
   public putProveedor(body) {
     const url = `https://utn-compras-api.herokuapp.com/proveedor`;
-    return this.http.get(url,body);
+    return this.http.put(url,body);
   }
 }
