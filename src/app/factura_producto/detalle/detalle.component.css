@@ -10,6 +10,7 @@ mat-card-title{
 
 table{
     width: 100%;
+    padding: 2%;
 }
 
 #imagen{
@@ -22,7 +23,6 @@ table{
     grid-template-columns: repeat(2, 1fr);
 }
  
-
 .prov-data {
     grid-column: span 1;
 }
@@ -30,25 +30,21 @@ table{
 .example-container {
     display: flex;
     flex-direction: column;
-    }
-    .example-container > * {
+}
+
+.example-container > * {
     width: 100%;
-    }
+}
     
-    .container {
+.container{
     width: 20%;
     margin-left: 40%;
-    }
+}
     
-    .separador {
+.separador{
     width: 20%;
-    }
+}
     
-    table {
-    width: 100%;
-    padding: 2%;
-    }
-    
-    .item {
+.item {
     text-align: left;
-    }
+}
