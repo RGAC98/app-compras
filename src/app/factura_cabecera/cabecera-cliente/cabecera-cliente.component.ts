@@ -42,7 +42,7 @@ export class CabeceraClienteComponent implements OnInit {
         // this.fuente = resp.cabeceras
         this.cabecerasList = resp.cabeceras
 
-        console.log(this.proveedorView);
+        // console.log(this.proveedorView);
         
 
         for (let index = 0; index < this.cabecerasList.length; index++) {
@@ -105,7 +105,20 @@ export class CabeceraClienteComponent implements OnInit {
       (error) => {
         console.warn(error);
       }
-    );;
+    );
+  }
+
+  deleteCabecera(idCabecera) {
+    console.log(idCabecera);
+    
+    this._cabeceraSV.deleteCabecera(idCabecera).subscribe(
+      (resp: any) => {
+        console.log(resp);
+      },
+      (error) => {
+        console.warn(error);
+      }
+    );
   }
 
 
