@@ -1,0 +1,24 @@
+<div>
+    <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-title>Reporte Saldo {{data.nombre}}</mat-card-title>
+        </mat-card-header>
+        
+    </mat-card>
+    <div>
+        <br>
+    </div>
+        <table align="center" mat-table [dataSource]="reporteSaldo" class="mat-elevation-z8">
+            <ng-container matColumnDef="Cedula">
+                <th mat-header-cell *matHeaderCellDef> Cédula/RUC </th>
+                <td mat-cell *matCellDef="let r"> {{r.cod_proveedor}} </td>
+            </ng-container>
+            <ng-container matColumnDef="Saldo">
+                <th mat-header-cell *matHeaderCellDef> Saldo </th>
+                <td mat-cell *matCellDef="let r"> {{r.saldo}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="Columns"></tr>
+            <tr mat-row *matRowDef="let row; columns: Columns;"></tr>
+        </table>
+    
+</div>

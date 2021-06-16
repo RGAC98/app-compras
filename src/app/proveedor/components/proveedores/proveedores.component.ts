@@ -4,7 +4,7 @@ import { ProveedoresService } from '../../services/proveedores.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { EditProveedorComponent } from '../edit-proveedor/edit-proveedor.component'
-
+import { ReporteSaldosComponent } from '../reporte-saldos/reporte-saldos.component'
 
 @Component({
   selector: 'app-proveedores',
@@ -139,16 +139,31 @@ export class ProveedoresComponent implements OnInit {
         email: email,
         estado: estado
       },
-      
+
       width: '500px',
       height: '590px',
       panelClass: 'my-class'
     });
 
-    
+
     dialogRef.afterClosed().subscribe(result => {
       this.getProveedor();
-     })
+    })
+  }
+
+  openDialogReporteSaldos() {
+    const dialogRef = this.dialog.open(ReporteSaldosComponent, {
+      data: {
+      },
+
+      width: '500px',
+      height: '590px',
+      panelClass: 'my-class'
+    });
+
+
+    dialogRef.afterClosed().subscribe(result => {
+    })
   }
 
 }

@@ -97,6 +97,18 @@
         </div>
         <div class="col-md-12">
             <br>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Reporte Saldo Proveedores</mat-card-title>
+                </mat-card-header>
+                <div class="demo-button-container">
+                    <button mat-icon-button color="basic" aria-label="Example icon button with a home icon"
+                        (click)="openDialogReporteSaldos()">
+                        <mat-icon>assignment</mat-icon>
+                    </button>
+                </div>
+            </mat-card>
+            <br>
         </div>
 
         <div class="col-md-12">
@@ -112,7 +124,7 @@
                 </ng-container>
 
                 <ng-container matColumnDef="prv_dni">
-                    <th mat-header-cell *matHeaderCellDef> Cedula/RUC </th>
+                    <th mat-header-cell *matHeaderCellDef> Cédula/RUC </th>
                     <td mat-cell *matCellDef="let proveedor"> {{proveedor.prv_dni}} </td>
                 </ng-container>
 

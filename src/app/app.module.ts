@@ -15,6 +15,7 @@ import { ProveedoresComponent } from './proveedor/components/proveedores/proveed
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditProveedorComponent } from './proveedor/components/edit-proveedor/edit-proveedor.component';
+import { ReporteSaldosComponent } from './proveedor/components/reporte-saldos/reporte-saldos.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { EditProveedorComponent } from './proveedor/components/edit-proveedor/ed
     AppComponent,
     CabeceraClienteComponent,
     ProveedoresComponent,
-    EditProveedorComponent
+    EditProveedorComponent,
+    ReporteSaldosComponent
   ],
   imports: [
     HttpClientModule,
