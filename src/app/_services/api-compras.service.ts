@@ -36,9 +36,9 @@ export class ApiComprasService
   }
 
   //Servicios de factura_producto
-  getProductosDeUnaCabecera(fcab_id)
+  getProductosDeUnaCabecera(fcab_id): Observable<any>
   {
-    return this.compras.get(this.ruta+`/factura_producto/${fcab_id}`)
+    return this.compras.get<any>(this.ruta+`/factura_producto/${fcab_id}`)
   }
 
   postCrearFacturaDetalle(fdet_fcab_id): Observable<any> {

@@ -22,4 +22,9 @@ export class ApiInventarioService
   {
     return this.inventario.get<any>(this.ruta+`/api/compras/p/${codigo}`)
   }
+
+  putActualizarInventario(codigo, cantidad): Observable<any>
+  {
+    return this.inventario.put<any>(this.ruta+`/api/compras/c`,{codigo, cantidad})
+  }
 }

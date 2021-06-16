@@ -95,6 +95,19 @@ export class DetalleComponent implements OnInit, OnDestroy
     })
   }
 
+  ActualizarInventario()
+  {
+    console.log("ACTUALIZANDO INVENTARIO");
+    for (let i = 0; i < this.productos.length; i++) 
+    {
+      this.inventario_api.putActualizarInventario(this.productos[i].fpro_producto, this.productos[i].fpro_cantidad)
+      .pipe(takeUntil(this.unsuscribe$))
+      .subscribe((respuesta: any) => {
+        console.log(respuesta);
+      })
+    }
+  }
+
   ActualizarProductos()
   {
     var productos2 = []
