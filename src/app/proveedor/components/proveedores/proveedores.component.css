@@ -23,3 +23,22 @@ table {
   .example-full-width {
     width: 50%;
   }
+  .example-container {
+    display: flex;
+    flex-direction: column
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+
+.container {
+      width: 60%;
+      margin-left: 10%;
+      margin-right: 10%;
+  }
+
+  .example-card{
+    align-items: center;
+    justify-content: center;
+  }
