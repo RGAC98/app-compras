@@ -1,0 +1,84 @@
+<div class="col-md-5">
+
+    <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-title>Administración Proveedores</mat-card-title>
+        </mat-card-header>
+
+        <form [formGroup]="form">
+            <mat-dialog-content>
+                Id Proveedor: {{data.id}}
+            </mat-dialog-content>
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Cedula: {{data.dni}}</mat-label>
+                    <input matInput placeholder="{{data.dni}}" type="text" formControlName="cedula"
+                        class="form-control">
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput placeholder="{{data.nombre}}" type="text" formControlName="nombre"
+                        class="form-control">
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <mat-label>ciudad</mat-label>
+                    <input matInput placeholder="{{data.ciudad}}" type="text" formControlName="ciudad"
+                        class="form-control">
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field appearance="fill">
+                    <mat-label>Tipo</mat-label>
+                    <mat-select class="form-select" id="inputGroupSelect01" formControlName="tipoSelected">
+                        <mat-option *ngFor="let t of tipos" [value]="t.tipo">
+                            {{t.tipo}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <mat-label>direccion</mat-label>
+                    <input matInput placeholder="{{data.direccion}}" type="text" formControlName="direccion"
+                        class="form-control">
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <mat-label>telefono</mat-label>
+                    <input matInput placeholder="{{data.telefono}}" type="text" formControlName="telefono"
+                        class="form-control">
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <mat-label>email</mat-label>
+                    <input matInput placeholder="{{data.email}}" type="text" formControlName="email"
+                        class="form-control">
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field appearance="fill">
+                    <mat-label>Estado</mat-label>
+                    <mat-select class="form-select" id="inputGroupSelect01" formControlName="estadoSelected">
+                        <mat-option *ngFor="let e of estados" [value]="e.estado">
+                            {{e.estado}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="demo-button-container">
+                <button mat-button class="demo-button" (click)="putProveedor()">
+                    Actualizar
+                </button>
+                <button mat-button (click)="onNoClick()">Cerrar</button>
+            </div>
+        </form>
+    </mat-card>
+
+</div>
