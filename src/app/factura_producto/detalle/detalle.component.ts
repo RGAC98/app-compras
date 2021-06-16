@@ -5,7 +5,6 @@ import {Subject} from 'rxjs'
 import {takeUntil} from 'rxjs/operators'
 import {jsPDF} from 'jspdf'
 
-import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas"
 
 //componentes y servicios
