@@ -65,7 +65,7 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <button mat-raised-button color="accent" (click)="validarProveedor()">
+      <button mat-raised-button color="accent" (click)="insertarCabecera()">
         Insertar
       </button>
     </div>
@@ -103,12 +103,18 @@
         </td>
         <ng-template #noCredito>Contado</ng-template>
         <td>
-          <button mat-icon-button color="primary">
+          <button (click)="abrirDialogEditarCab(cabecera.fcab_id,cabecera.fcab_prv_id, cabecera.fcab_fecha_init, fcab_fecha_fin, cabecera.fcab_tipo_pago)" mat-icon-button color="primary">
             <mat-icon>edit</mat-icon>
           </button>
 
           <button mat-icon-button color="warm" (click)="deleteCabecera(cabecera.fcab_id)">
             <mat-icon>delete</mat-icon>
+          </button>
+
+          <button (click)="insertarFacturaDetalle(cabecera.fcab_id)" mat-icon-button color="warm">
+            <!-- <span > -->
+              <mat-icon>assignment_turned_in</mat-icon>
+            <!-- </span> -->
           </button>
 
           <button [routerLink]="['/detalle/', cabecera.fcab_id]" mat-icon-button color="warm">

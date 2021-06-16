@@ -29,14 +29,14 @@ export class CabeceraServicioService {
   }
 
   putCabecera(idCabecera: any, cabecera: any) {
-
+    const URL = `https://utn-compras-api.herokuapp.com`;
     const body = JSON.stringify(cabecera);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
     // console.log(body);
     const url = `${URL}/cabeceras/${idCabecera}`;
-    // console.log(url);
+    console.log(url);
     return this._http.put(url, body, {headers});
   }
 
