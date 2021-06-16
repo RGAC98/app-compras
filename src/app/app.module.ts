@@ -14,7 +14,7 @@ import { ReportesComponent } from './factura_detalle/reportes/reportes.component
 import { DetalleComponent } from './factura_producto/detalle/detalle.component';
 import { InventarioComponent } from './factura_producto/inventario/inventario.component';
 import { ProductoComponent } from './factura_producto/producto/producto.component';
-
+import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +24,7 @@ import { ProductoComponent } from './factura_producto/producto/producto.componen
     DetalleComponent,
     InventarioComponent,
     ProductoComponent,
+    LandingComponent,
   ],
   imports: [
     HttpClientModule,
