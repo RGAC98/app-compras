@@ -93,11 +93,12 @@
         <table>
             <thead>
                 <tr>
-                    <th class="item">Codigo</th>
+                    <th class="item">Código</th>
                     <th class="item">Producto</th>
                     <th class="item">Cantidad</th>
                     <th class="item">PVP</th>
                     <th class="item">IVA</th>
+                    <th class="item">Precio Total</th>
                     <th class="item">Acciones</th>
                 </tr>
             </thead>
@@ -108,6 +109,7 @@
                     <td class="item">{{producto.fpro_cantidad}}</td>
                     <td class="item">{{producto.fpro_pvp}}</td>
                     <td class="item">{{producto.fpro_iva}}</td>
+                    <td class="item">{{(producto.fpro_pvp*producto.fpro_cantidad)+((producto.fpro_pvp*producto.fpro_cantidad)*producto.fpro_iva)}}</td>
                     <td>
                         <button mat-icon-button color="primary" (click)="abrirDialogProducto(producto.fpro_producto, 'actualizar')">
                             <mat-icon>edit</mat-icon>
