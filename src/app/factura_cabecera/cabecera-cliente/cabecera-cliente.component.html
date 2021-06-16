@@ -3,7 +3,7 @@
 
 <div class="container">
   <h3 style="margin-left: 25%">Ingresar cabecera</h3>
-  <form>
+  <form id="myForm">
     <div class="example-container">
       <mat-form-field>
         <mat-label>Proveedor</mat-label>
@@ -12,7 +12,7 @@
           [(ngModel)]="proveedorSeleccionado"
           name="proveedor"
         >
-          <mat-option
+          <mat-option (click)="validarProveedor()"
             *ngFor="let proveedor of proveedorView"
             [value]="proveedor.prv_id"
           >
@@ -65,7 +65,7 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <button mat-raised-button color="accent" (click)="insertarCabecera()">
+      <button mat-raised-button color="accent" (click)="validarProveedor()">
         Insertar
       </button>
     </div>
@@ -111,10 +111,10 @@
             <mat-icon>delete</mat-icon>
           </button>
 
-          <button mat-icon-button color="warm">
-            <span [routerLink]="['/detalle/', cabecera.fcab_id]">
+          <button [routerLink]="['/detalle/', cabecera.fcab_id]" mat-icon-button color="warm">
+            <!-- <span > -->
               <mat-icon>description</mat-icon>
-            </span>
+            <!-- </span> -->
           </button>
         </td>
       </tr>

@@ -10,7 +10,6 @@ import { CabeceraServicioService } from './cabecera-servicio.service';
 export class CabeceraClienteComponent implements OnInit {
 
   tipoPagoView: any[] = [
-    { value: "true", viewValue: "Crédito" },
     { value: "false", viewValue: "Contado" },
   ];
 
@@ -39,6 +38,7 @@ export class CabeceraClienteComponent implements OnInit {
   getCabeceras() {
     this._cabeceraSV.getCabeceras().subscribe(
       (resp: any) => {
+       
         // this.fuente = resp.cabeceras
         this.cabecerasList = resp.cabeceras
 
@@ -55,7 +55,7 @@ export class CabeceraClienteComponent implements OnInit {
                   fcab_fecha_fin: this.obtenerFecha(this.cabecerasList[index].fcab_fecha_fin),
                   fcab_tipo_pago: this.cabecerasList[index].fcab_tipo_pago
                 }       
-                console.log(cab);
+                // console.log(cab);
                          
                 this.cabecerasList2.push(cab)
               }
@@ -63,13 +63,39 @@ export class CabeceraClienteComponent implements OnInit {
             }
           
         }
-        console.log(this.cabecerasList2);
+        // console.log(this.cabecerasList2);
         
       },
       (error) => {
         console.warn(error);
       }
     );
+  }
+
+  validarProveedor() {
+    console.log(this.proveedorSeleccionado);
+    console.log(this.proveedorView);
+
+    this.tipoPagoView = [
+      { value: "false", viewValue: "Contado" },
+    ];
+
+    for (let index = 0; index < this.proveedorView.length; index++) {
+      if (this.proveedorView[index].prv_id == this.proveedorSeleccionado) {
+        
+        // console.log(this.proveedorView[index].prv_tipo);
+        
+        if (this.proveedorView[index].prv_tipo == true) {
+          this.tipoPagoView = [
+            { value: "true", viewValue: "Crédito" },
+            { value: "false", viewValue: "Contado" },
+          ];
+          break;
+        }
+      }
+    }
+    
+    
   }
 
   getProveedores() {
@@ -100,12 +126,20 @@ export class CabeceraClienteComponent implements OnInit {
     this._cabeceraSV.postCabecera(cabecera).subscribe(
       (resp: any) => {
         console.log('Insertada cabecera con exito!');
-        
+        this.cabecerasList = []
+        this.cabecerasList2 = []
+        this.getCabeceras();
+
+        this.proveedorSeleccionado = 0
+        this.fecha_fin = undefined;
+        this.fecha_inicio = undefined;
+        this.tipoPagoSeleccionado = false
       },
       (error) => {
         console.warn(error);
       }
     );
+    
   }
 
   deleteCabecera(idCabecera) {
@@ -114,13 +148,21 @@ export class CabeceraClienteComponent implements OnInit {
     this._cabeceraSV.deleteCabecera(idCabecera).subscribe(
       (resp: any) => {
         console.log(resp);
+        this.cabecerasList = []
+        this.cabecerasList2 = []
+        this.getCabeceras();
+
+        this.proveedorSeleccionado = 0
+        this.fecha_fin = undefined;
+        this.fecha_inicio = undefined;
+        this.tipoPagoSeleccionado = false
       },
       (error) => {
         console.warn(error);
       }
     );
+    
   }
-
 
 }
 
@@ -141,3 +183,4 @@ export interface CabeceraId {
 }
 
 // fcab_prv_id
+
