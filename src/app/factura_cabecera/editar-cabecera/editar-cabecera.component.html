@@ -1,0 +1,70 @@
+<h3 style="margin-left: 25%">Editar cabecera</h3>
+  <form id="myForm">
+    <div class="example-container">
+      <mat-form-field>
+        <mat-label>Proveedor</mat-label>
+        <mat-select
+          required
+          [(ngModel)]="proveedorSeleccionado"
+          name="proveedor"
+        >
+          <mat-option (click)="validarProveedor()"
+            *ngFor="let proveedor of proveedorView"
+            [value]="proveedor.prv_id"
+          >
+            {{ proveedor.prv_nombre }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+<br>
+      <mat-form-field>
+        <input
+          [(ngModel)]="fecha_inicio"
+          name="fecha_inicio"
+          required
+          matInput
+          [matDatepicker]="picker"
+          placeholder="Fecha factura"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+<br>
+      <mat-form-field>
+        <input
+          [(ngModel)]="fecha_fin"
+          name="fecha_fin"
+          required
+          matInput
+          [matDatepicker]="pickerr"
+          placeholder="Fecha fin factura"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="pickerr"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #pickerr></mat-datepicker>
+      </mat-form-field>
+<br>
+      <mat-form-field>
+        <mat-select
+          required
+          placeholder="Tipo pago"
+          [(ngModel)]="tipoPagoSeleccionado"
+          name="tipoPago"
+        >
+          <mat-option
+            *ngFor="let tipoPago of tipoPagoView"
+            [value]="tipoPago.value"
+          >
+            {{ tipoPago.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <br>
+      <button mat-raised-button color="accent" (click)="updateCabecera()">
+        Insertar
+      </button>
+    </div>
+  </form>

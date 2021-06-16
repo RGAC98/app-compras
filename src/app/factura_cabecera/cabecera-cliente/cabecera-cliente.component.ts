@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { CabeceraServicioService } from './cabecera-servicio.service';
+import {MatDialog} from '@angular/material/dialog';
+import { EditarCabeceraComponent } from '../editar-cabecera/editar-cabecera.component';
+import { ApiComprasService } from 'src/app/_services/api-compras.service';
 
 @Component({
   selector: 'app-cabecera-cliente',
@@ -10,7 +13,6 @@ import { CabeceraServicioService } from './cabecera-servicio.service';
 export class CabeceraClienteComponent implements OnInit {
 
   tipoPagoView: any[] = [
-    { value: "true", viewValue: "Crédito" },
     { value: "false", viewValue: "Contado" },
   ];
 
@@ -25,7 +27,7 @@ export class CabeceraClienteComponent implements OnInit {
   fecha_inicio: Date;
   fecha_fin: Date;
 
-  constructor(private _cabeceraSV: CabeceraServicioService) { }
+  constructor(private _cabeceraSV: CabeceraServicioService, private dialog: MatDialog, private _apiCompras: ApiComprasService) { }
 
   fuente: MatTableDataSource<Cabecera>;
 
@@ -39,6 +41,7 @@ export class CabeceraClienteComponent implements OnInit {
   getCabeceras() {
     this._cabeceraSV.getCabeceras().subscribe(
       (resp: any) => {
+       
         // this.fuente = resp.cabeceras
         this.cabecerasList = resp.cabeceras
 
@@ -50,12 +53,13 @@ export class CabeceraClienteComponent implements OnInit {
               if (this.cabecerasList[index].fcab_prv_id == this.proveedorView[jindex].prv_id) {
                 let cab: Cabecera = {
                   fcab_id: this.cabecerasList[index].fcab_id,
+                  fcab_prv_id: this.cabecerasList[index].fcab_prv_id,
                   fcab_name: this.proveedorView[jindex].prv_nombre,
                   fcab_fecha_init: this.obtenerFecha(this.cabecerasList[index].fcab_fecha_init),
                   fcab_fecha_fin: this.obtenerFecha(this.cabecerasList[index].fcab_fecha_fin),
                   fcab_tipo_pago: this.cabecerasList[index].fcab_tipo_pago
                 }       
-                console.log(cab);
+                // console.log(cab);
                          
                 this.cabecerasList2.push(cab)
               }
@@ -63,13 +67,39 @@ export class CabeceraClienteComponent implements OnInit {
             }
           
         }
-        console.log(this.cabecerasList2);
+        // console.log(this.cabecerasList2);
         
       },
       (error) => {
         console.warn(error);
       }
     );
+  }
+
+  validarProveedor() {
+    console.log(this.proveedorSeleccionado);
+    console.log(this.proveedorView);
+
+    this.tipoPagoView = [
+      { value: "false", viewValue: "Contado" },
+    ];
+
+    for (let index = 0; index < this.proveedorView.length; index++) {
+      if (this.proveedorView[index].prv_id == this.proveedorSeleccionado) {
+        
+        // console.log(this.proveedorView[index].prv_tipo);
+        
+        if (this.proveedorView[index].prv_tipo == true) {
+          this.tipoPagoView = [
+            { value: "true", viewValue: "Crédito" },
+            { value: "false", viewValue: "Contado" },
+          ];
+          break;
+        }
+      }
+    }
+    
+    
   }
 
   getProveedores() {
@@ -90,6 +120,22 @@ export class CabeceraClienteComponent implements OnInit {
     return fecha
   }
 
+  insertarFacturaDetalle(fcab_id) {
+    console.log(fcab_id);
+    
+    this._apiCompras.postCrearFacturaDetalle(fcab_id).subscribe(
+      (resp:any) => {
+        // console.log("CREANDOOO DETALLEEE");
+        
+        console.log(resp);
+        
+      },
+      (error) => {
+        console.warn('ERROR: ',error);
+      }
+    )
+  }
+
   insertarCabecera(){
     let cabecera: any = {
       fcab_prv_id: this.proveedorSeleccionado,
@@ -100,12 +146,20 @@ export class CabeceraClienteComponent implements OnInit {
     this._cabeceraSV.postCabecera(cabecera).subscribe(
       (resp: any) => {
         console.log('Insertada cabecera con exito!');
-        
+        this.cabecerasList = []
+        this.cabecerasList2 = []
+        this.getCabeceras();
+
+        this.proveedorSeleccionado = 0
+        this.fecha_fin = undefined;
+        this.fecha_inicio = undefined;
+        this.tipoPagoSeleccionado = false
       },
       (error) => {
         console.warn(error);
       }
     );
+    
   }
 
   deleteCabecera(idCabecera) {
@@ -114,18 +168,44 @@ export class CabeceraClienteComponent implements OnInit {
     this._cabeceraSV.deleteCabecera(idCabecera).subscribe(
       (resp: any) => {
         console.log(resp);
+        this.cabecerasList = []
+        this.cabecerasList2 = []
+        this.getCabeceras();
+
+        this.proveedorSeleccionado = 0
+        this.fecha_fin = undefined;
+        this.fecha_inicio = undefined;
+        this.tipoPagoSeleccionado = false
       },
       (error) => {
         console.warn(error);
       }
     );
+    
   }
 
+  abrirDialogEditarCab(fcab_id,fcab_prv_id, fcab_fecha_init, fcab_fecha_fin, fcab_tipo_pago)
+  {
+    const dialogo = this.dialog.open(EditarCabeceraComponent, {
+      data: {
+        fcab_id: fcab_id,
+        fcab_prv_id: fcab_prv_id,
+        fcab_fecha_init: fcab_fecha_init,
+        fcab_fecha_fin: fcab_fecha_fin,
+        fcab_tipo_pago: fcab_tipo_pago
+      },
+      width: '300px',
+      height: '400px',
+      panelClass: 'my-class'
+    });
+    dialogo.afterClosed().subscribe(resultado => {})
+  }
 
 }
 
 export interface Cabecera {
   fcab_id: number;
+  fcab_prv_id: number
   fcab_name: string;
   fcab_fecha_init: any;
   fcab_fecha_fin: any;
@@ -141,3 +221,4 @@ export interface CabeceraId {
 }
 
 // fcab_prv_id
+

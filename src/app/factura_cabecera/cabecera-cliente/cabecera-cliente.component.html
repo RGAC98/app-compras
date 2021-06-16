@@ -3,7 +3,7 @@
 
 <div class="container">
   <h3 style="margin-left: 25%">Ingresar cabecera</h3>
-  <form>
+  <form id="myForm">
     <div class="example-container">
       <mat-form-field>
         <mat-label>Proveedor</mat-label>
@@ -12,7 +12,7 @@
           [(ngModel)]="proveedorSeleccionado"
           name="proveedor"
         >
-          <mat-option
+          <mat-option (click)="validarProveedor()"
             *ngFor="let proveedor of proveedorView"
             [value]="proveedor.prv_id"
           >
@@ -103,7 +103,7 @@
         </td>
         <ng-template #noCredito>Contado</ng-template>
         <td>
-          <button mat-icon-button color="primary">
+          <button (click)="abrirDialogEditarCab(cabecera.fcab_id,cabecera.fcab_prv_id, cabecera.fcab_fecha_init, fcab_fecha_fin, cabecera.fcab_tipo_pago)" mat-icon-button color="primary">
             <mat-icon>edit</mat-icon>
           </button>
 
@@ -111,10 +111,16 @@
             <mat-icon>delete</mat-icon>
           </button>
 
-          <button mat-icon-button color="warm">
-            <span [routerLink]="['/detalle/', cabecera.fcab_id]">
+          <button (click)="insertarFacturaDetalle(cabecera.fcab_id)" mat-icon-button color="warm">
+            <!-- <span > -->
+              <mat-icon>assignment_turned_in</mat-icon>
+            <!-- </span> -->
+          </button>
+
+          <button [routerLink]="['/detalle/', cabecera.fcab_id]" mat-icon-button color="warm">
+            <!-- <span > -->
               <mat-icon>description</mat-icon>
-            </span>
+            <!-- </span> -->
           </button>
         </td>
       </tr>
