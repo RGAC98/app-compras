@@ -11,12 +11,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { CabeceraClienteComponent } from './factura_cabecera/cabecera-cliente/cabecera-cliente.component';
 import { ReportesComponent } from './factura_detalle/reportes/reportes.component';
+import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CabeceraClienteComponent,
     ReportesComponent,
+    LandingComponent,
   ],
   imports: [
     HttpClientModule,
