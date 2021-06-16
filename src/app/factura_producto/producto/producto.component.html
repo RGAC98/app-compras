@@ -1,0 +1,64 @@
+<div>
+    <mat-card class="prov-data">
+        <br>
+        <mat-card-title>Producto</mat-card-title>
+        <br>
+        <mat-card-content>
+            <label style="font-weight: bold;">Codigo de producto: </label> <output>{{producto.codigo_pro}}</output> <br>
+            <label style="font-weight: bold;">Nombre de producto: </label> <output>{{producto.nombre_pro}}</output> <br>
+            <label style="font-weight: bold;">Descripción de producto: </label> <output>{{producto.descripcion_pro}}</output> <br>
+            <label style="font-weight: bold;">Cantidad actual: </label> <output>{{producto.cantidad_pro}}</output> <br>
+            <label style="font-weight: bold;">Costo del producto: </label> <output>{{producto.costo_pro}}</output> <br>
+            <label style="font-weight: bold;">PVP de producto: </label> <output>{{producto.pvp_pro}}</output> <br>
+            <label style="font-weight: bold;">Estado de producto: </label> <output>{{producto.estado_pro}}</output> <br>
+            <label style="font-weight: bold;">IVA del producto: </label> <output>{{producto.iva_pro}}</output> <br>
+        </mat-card-content>
+        <br>
+    </mat-card>
+</div>
+<br>
+<div *ngIf = "accion == 'actualizar'" style="text-align: center;">
+    <mat-card>
+        <mat-card-content>
+            <form>
+                <p>
+                    <mat-form-field>
+                        <input type="number" placeholder="Cantidad a comprar" matInput [(ngModel)]="cantidad"
+                            [ngModelOptions]="{standalone: true}" required />
+                    </mat-form-field>
+                </p>
+                <div class="button">
+                    <button type="submit" mat-raised-button color="primary" (click)="ActualizarProducto()">Actualizar producto</button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
+<div *ngIf = "accion == 'insertar'" style="text-align: center;">
+    <mat-card>
+        <mat-card-content>
+            <form>
+                <p>
+                    <mat-form-field>
+                        <input type="number" placeholder="Cantidad a comprar" matInput [(ngModel)]="cantidad"
+                            [ngModelOptions]="{standalone: true}" required />
+                    </mat-form-field>
+                </p>
+                <div class="button">
+                    <button type="submit" mat-raised-button color="primary" (click)="IngresarProducto()">Ingresar producto</button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
+<div *ngIf = "accion == 'eliminar'" style="text-align: center;">
+    <mat-card>
+        <mat-card-content>
+            <form>
+                <div class="button">
+                    <button type="submit" mat-raised-button color="primary" (click)="EliminarProducto()">Eliminar producto</button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

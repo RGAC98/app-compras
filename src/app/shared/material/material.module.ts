@@ -49,6 +49,9 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { DateAdapter } from '@angular/material/core';
 
+import { MatFormFieldModule } from '@angular/material/form-field';
+
+
 @NgModule({
   imports: [
     CommonModule
@@ -92,7 +95,8 @@ import { DateAdapter } from '@angular/material/core';
     MatTooltipModule,
     MatTreeModule,
     DragDropModule,
-    ScrollingModule
+    ScrollingModule,
+    MatFormFieldModule
   ],
   declarations: [],
   providers: [{ provide: MatPaginatorIntl}]
