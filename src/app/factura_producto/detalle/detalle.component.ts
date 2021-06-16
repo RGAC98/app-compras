@@ -1,8 +1,9 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy, ViewChild, ElementRef} from '@angular/core';
 import {ActivatedRoute} from '@angular/router'
 import {MatDialog} from '@angular/material/dialog';
 import {Subject} from 'rxjs'
 import {takeUntil} from 'rxjs/operators'
+import {jsPDF} from 'jspdf'
 
 //componentes y servicios
 import {ApiComprasService} from '../../_services/api-compras.service'
@@ -154,5 +155,14 @@ export class DetalleComponent implements OnInit, OnDestroy
       panelClass: 'my-class'
     });
     dialogo.afterClosed().subscribe(resultado => {})
+  }
+
+  @ViewChild('content', {static: true}) content: ElementRef;
+  public GenerarPDF():void
+  {
+    const DATA = this.content.nativeElement;
+    const doc: jsPDF = new jsPDF();
+    doc.html(document.getElementById('content'))
+    doc.save('factura')
   }
 }

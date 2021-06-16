@@ -1,6 +1,6 @@
 <br>
 <div>
-    <div class="prov">
+    <div class="prov" id="content" #content>
         <mat-card class="prov-data">
             <br>
             <mat-card-title>Datos del Proveedor</mat-card-title>
@@ -43,6 +43,9 @@
     </div>
 
     <div align="right">
+        <button mat-icon-button color="primary" (click)="GenerarPDF()">
+            <mat-icon>picture_as_pdf</mat-icon>
+        </button>
         <button mat-icon-button color="primary" (click)="abrirDialog(cabecera.fcab_id, cabecera.fdet_id)">
             <mat-icon>add_shopping_cart</mat-icon>
         </button>
