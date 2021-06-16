@@ -4,6 +4,9 @@ import {MatDialog} from '@angular/material/dialog';
 import {Subject} from 'rxjs'
 import {takeUntil} from 'rxjs/operators'
 
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas"
+
 //componentes y servicios
 import {ApiComprasService} from '../../_services/api-compras.service'
 import {InventarioComponent} from '../inventario/inventario.component'
@@ -171,6 +174,24 @@ export class DetalleComponent implements OnInit, OnDestroy
       
     }
     this.sumaTotal = suma;
+  }
+
+  downloadPDF() {
+    // pdf
+    var element = document.getElementById('pdf')
+
+    html2canvas(element).then((canvas) => {
+      var imgData = canvas.toDataURL('image/png')
+
+      var doc: jsPDF = new jsPDF()
+
+      var imgHeight = canvas.height * 208 / canvas.width;
+
+      doc.addImage(imgData, 0, 0, 208, imgHeight)
+
+      doc.save("image.pdf")
+    })
+
   }
 
 }

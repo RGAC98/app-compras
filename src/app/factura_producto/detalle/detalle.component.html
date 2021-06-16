@@ -1,5 +1,5 @@
 <br>
-<div>
+<div id="pdf">
     <div class="prov">
         <mat-card class="prov-data">
             <br>
@@ -45,6 +45,9 @@
     <div align="right">
         <button mat-icon-button color="primary" (click)="abrirDialog(cabecera.fcab_id, cabecera.fdet_id)">
             <mat-icon>add_shopping_cart</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" (click)="downloadPDF()">
+            <mat-icon>picture_as_pdf</mat-icon>
         </button>
     </div>
 

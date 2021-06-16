@@ -9,7 +9,7 @@ export class CabeceraServicioService {
   constructor(private _http: HttpClient) { }
 
   getCabeceras() {
-    const url = `https://utn-compras-api.herokuapp.com/cabeceras/`;
+    const url = `https://utn-compras-api.herokuapp.com/cabeceras`;
 
     return this._http.get(url);
   }
