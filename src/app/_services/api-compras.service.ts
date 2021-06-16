@@ -41,6 +41,10 @@ export class ApiComprasService
     return this.compras.get<any>(this.ruta+`/factura_producto/${fcab_id}`)
   }
 
+  postCrearFacturaDetalle(fdet_fcab_id): Observable<any> {
+    return this.compras.post<any>(this.ruta+`/factura_detalle`, {fdet_fcab_id})
+  }
+
   deleteEliminarProducto(id_cabecera, id_detalle, producto): Observable<any>
   {
     return this.compras.delete<any>(this.ruta+`/factura_producto/${id_cabecera}/${id_detalle}/${producto}`)

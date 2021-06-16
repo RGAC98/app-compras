@@ -34,6 +34,8 @@ export class DetalleComponent implements OnInit, OnDestroy
   fecha_inicio: string
   fecha_fin: string
 
+  sumaTotal: any;
+
   //datos de la tabla
   columnas: string[] = ['CODIGO', 'CANTIDAD', 'PVP', 'IVA', 'ACCIONES']
 
@@ -155,6 +157,20 @@ export class DetalleComponent implements OnInit, OnDestroy
       panelClass: 'my-class'
     });
     dialogo.afterClosed().subscribe(resultado => {})
+  }
+
+  calcularTotal()
+  {
+    console.log("CALCULANDO TOTAL: ");
+    console.log('PRODUCTOS: ',this.productos);
+    
+    let suma = 0;
+    for (let index = 0; index < this.productos.length; index++) 
+    {
+      // suma+= (this.productos[index].fpro_pvp*this.productos[index].fpro_cantidad)+((this.productos[index].fpro_pvp*this.productos[index].fpro_cantidad)*this.productos[index].fpro_iva)
+      console.log('SUMAAA: ', this.productos[index].fpro_pvp);  
+    }
+    this.sumaTotal = suma;
   }
 
   @ViewChild('content', {static: true}) content: ElementRef;
