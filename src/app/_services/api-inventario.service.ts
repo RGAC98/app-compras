@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +13,13 @@ export class ApiInventarioService
   constructor(private inventario: HttpClient) 
   {}
 
-  getObtenerInventario()
+  getObtenerInventario(): Observable<any>
   {
-    return this.inventario.get(this.ruta+'/listar/producto')
+    return this.inventario.get<any>(this.ruta+'/api/compras')
   }
 
-  getObtenerProducto(codigo)
+  getObtenerProducto(codigo): Observable<any>
   {
-    return this.inventario.get(this.ruta+`/api/compras/p/${codigo}`)
+    return this.inventario.get<any>(this.ruta+`/api/compras/p/${codigo}`)
   }
 }

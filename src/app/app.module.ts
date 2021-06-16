@@ -13,6 +13,7 @@ import { CabeceraClienteComponent } from './factura_cabecera/cabecera-cliente/ca
 import { ReportesComponent } from './factura_detalle/reportes/reportes.component';
 import { DetalleComponent } from './factura_producto/detalle/detalle.component';
 import { InventarioComponent } from './factura_producto/inventario/inventario.component';
+import { ProductoComponent } from './factura_producto/producto/producto.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { InventarioComponent } from './factura_producto/inventario/inventario.co
     ReportesComponent,
     DetalleComponent,
     InventarioComponent,
+    ProductoComponent,
   ],
   imports: [
     HttpClientModule,

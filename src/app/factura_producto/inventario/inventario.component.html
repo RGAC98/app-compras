@@ -1,1 +1,30 @@
-<p>inventario works!</p>
+<div class="padre">
+    <div class="hijo1">
+        <mat-card>
+            <mat-card-title align="center">Inventario</mat-card-title>
+        </mat-card>
+    </div>
+    <div class="hijo2">
+        <table style="text-align: center;">
+            <li *ngFor = "let producto of inventario; let i = index">
+                <tr *ngIf = "i%3 == 0">
+                    <td>
+                        <mat-card *ngIf="i != inventario.length">
+                            <button mat-button (click)="abrirDialog(producto.codigo_pro)">{{producto.nombre_pro}}</button>
+                        </mat-card>
+                    </td>
+                    <td>
+                        <mat-card *ngIf="i+1 != inventario.length">
+                            <button mat-button (click)="abrirDialog(inventario[i+1].codigo_pro)">{{inventario[i+1].nombre_pro}}</button>
+                        </mat-card>
+                    </td>
+                    <td>
+                        <mat-card *ngIf="i+1 != inventario.length">
+                            <button mat-button (click)="abrirDialog(inventario[i+2].codigo_pro)">{{inventario[i+2].nombre_pro}}</button>
+                        </mat-card>
+                    </td>
+                </tr>
+            </li>
+        </table>
+    </div>
+</div>

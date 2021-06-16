@@ -1,0 +1,111 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
+table {
+    width: 100%;
+    border: black;
+}
+
+.text-red {
+    color: red;
+}
+
+.text-green {
+    color: green;
+}
+
+.text-orange {
+    color: orange;
+}
+
+.text-red-bold {
+    color: red;
+    font-weight: bold;
+}
+
+.text-green-bold {
+    color: green;
+    font-weight: bold;
+}
+
+.mat-table {
+    overflow: auto;
+    max-height: 700px;
+    border: black;
+}
+
+.mat-header-cell .mat-sort-header-sorted {
+    color: #0A0A0A;
+}
+
+.md-pagination-wrapper {
+    width: auto !important;
+}
+
+.md-row:nth-child(even) {
+    background-color: #EDF1F5;
+}
+
+.md-row:nth-child(odd) {
+    background-color: #FDFDFB;
+}
+
+td.mat-cell {
+    /* row padding */
+    padding: 3px 5px;
+    /* row border */
+    /* border-bottom: 1px solid #5DBCD2;
+  border-top: 1px solid #5DBCD2;
+  border-left: 1px solid #5DBCD2; */
+}
+
+.parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+ul,
+li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.btn {
+    border: 2px solid gray;
+    color: green;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.example-card{
+    width: 150px;
+    height: 25px;
+}
+
+#add-button {
+    right: 20px;
+    bottom: 10px;
+    left: auto;
+    position: fixed;
+}

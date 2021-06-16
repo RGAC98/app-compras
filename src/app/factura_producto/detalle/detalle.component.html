@@ -12,8 +12,7 @@
                     <label style="font-weight: bold;">Teléfono: </label> <output>{{cabecera.prv_telefono}}</output>
                 </p>
                 <p align="center">
-                    <label style="font-weight: bold;">Dirección: </label> <output>{{cabecera.prv_ciudad}}
-                        {{cabecera.prv_direccion}} &nbsp;</output>
+                    <label style="font-weight: bold;">Dirección: </label> <output>{{cabecera.prv_ciudad}} {{cabecera.prv_direccion}} &nbsp;</output>
                     <label style="font-weight: bold;">Email: </label> <output>{{cabecera.prv_email}}</output>
                 </p>
             </mat-card-content>
@@ -23,7 +22,7 @@
             <mat-card-title>Datos de la factura</mat-card-title>
             <br>
             <mat-card-content>
-                <p align="center" style="font-weight: bold;">{{"UTN-FAC-"+cabecera.fcab_id}}</p>
+                <p align="center" style="font-weight: bold;">{{"UTN-FAC-"+cabecera.fcab_id+"-"+cabecera.fdet_id}}</p>
                 <p align="center">
                     <label style="font-weight: bold;">Fecha de inicio: </label> <output>{{fecha_inicio}} &nbsp;</output>
                     <label style="font-weight: bold;">Fecha de fin: </label> <output>{{fecha_fin}}</output>
@@ -44,7 +43,7 @@
     </div>
 
     <div align="right">
-        <button mat-icon-button color="primary" (click)="abrirDialog()">
+        <button mat-icon-button color="primary" (click)="abrirDialog(cabecera.fcab_id, cabecera.fdet_id)">
             <mat-icon>add_shopping_cart</mat-icon>
         </button>
     </div>
@@ -95,6 +94,7 @@
             <thead>
                 <tr>
                     <th class="item">Codigo</th>
+                    <th class="item">Producto</th>
                     <th class="item">Cantidad</th>
                     <th class="item">PVP</th>
                     <th class="item">IVA</th>
@@ -104,14 +104,15 @@
             <tbody>
                 <tr *ngFor="let producto of productos">
                     <td class="item">{{producto.fpro_producto}}</td>
+                    <td class="item">{{producto.fpro_nombre}}</td>
                     <td class="item">{{producto.fpro_cantidad}}</td>
                     <td class="item">{{producto.fpro_pvp}}</td>
                     <td class="item">{{producto.fpro_iva}}</td>
                     <td>
-                        <button mat-icon-button color="primary">
+                        <button mat-icon-button color="primary" (click)="abrirDialogProducto(producto.fpro_producto, 'actualizar')">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-icon-button color="warm">
+                        <button mat-icon-button color="warm" (click)="abrirDialogProducto(producto.fpro_producto, 'eliminar')">
                             <mat-icon>delete</mat-icon>
                         </button>
                     </td>
@@ -119,3 +120,4 @@
             </tbody>
         </table>
     </div>
+</div>
